@@ -1,5 +1,10 @@
 # JamBot: Music Theory Aware Chord Based Generation of Polyphonic Music with LSTMs
 
+# Paper
+
+"JamBot: Music Theory Aware Chord Based Generation of Polyphonic Music with LSTMs", presented at ICTAI 2017. 
+https://arxiv.org/abs/1711.07682
+
 ## Setup
 
 Make sure you have the following packages installed:
