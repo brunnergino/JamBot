@@ -10,6 +10,11 @@ https://arxiv.org/abs/1711.07682
 
 * When JamBot is trained on an unshifted dataset, i.e., all songs are left in their respective keys, the learned chord embeddings form the circle of fifths.
 
+Circle of Fifths            | 2D Projection of Chord Embeddings
+:-------------------------:|:-------------------------:
+<img src="CoF.svg" width="300">  |  <img src="Jambot_Embeddings_CoF.png" width="400">
+(Source: By Just plain Bill - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=4463183) |
+
 * JamBot can create harmonic music with some longer term structure, thanks to its hierarchical structure. Samples can be listened to at: https://www.youtube.com/channel/UCQbE9vfbYycK4DZpHoZKcSw
 
 ## Setup
