@@ -13,18 +13,18 @@ import data_class
 
 
 
-chord_model_folder = 'models/chords/Shifted_True_Lr_1e-05_EmDim_10_opt_Adam_bi_False_lstmsize_256_trainsize_30_testsize_5/'
-chord_model_name = 'model_Epoch18.h5'
+chord_model_folder = 'models/chords/1523433134-Shifted_True_Lr_1e-05_EmDim_10_opt_Adam_bi_False_lstmsize_512_trainsize_4_testsize_1_samples_per_bar8/'
+chord_model_name = 'model_Epoch10_4.pickle'
 
-melody_model_folder = 'models/chords_mldy/Shifted_True_NextChord_True_ChordEmbed_embed_Counter_True_Highcrop_84_Lowcrop_24_Lr_1e-06_opt_Adam_bi_False_lstmsize_512_trainsize_30_testsize_10/'
-melody_model_name = 'modelEpoch1.h5'
+melody_model_folder = 'models/chords_mldy/Shifted_True_NextChord_True_ChordEmbed_embed_Counter_True_Highcrop_84_Lowcrop_24_Lr_1e-06_opt_Adam_bi_False_lstmsize_512_trainsize_4_testsize_1/'
+melody_model_name = 'modelEpoch2.pickle'
 
 midi_save_folder = 'predicted_midi/'
 
 seed_path = 'data/' + shift_folder + 'indroll/'
 seed_chord_path = 'data/' + shift_folder + 'chord_index/'
 
-seed_name = 'A/G/TRAAGKR12903CFC1E5/cb50d24e03f113ba8655da7796116f55.mid.pickle'
+seed_name = 'Piano Concerto n2 op19 1mov.mid.pickle'
 
 
 # Parameters for song generation:
