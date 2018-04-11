@@ -5,7 +5,8 @@ from keras.layers.recurrent import LSTM
 from keras.layers import Dense, Activation
 from keras.layers.embeddings import Embedding
 from keras.optimizers import RMSprop, Adam
-from keras.utils import to_categorical
+# from keras.utils import to_categorical
+from keras.utils import np_utils
 from keras.layers.wrappers import Bidirectional
 from random import shuffle
 import progressbar
@@ -33,16 +34,16 @@ from keras.backend.tensorflow_backend import set_session
 
 
 # Path to the fully trained chord model for the chord embeddings:
-chord_model_path = 'models/chords/Shifted_True_Lr_1e-05_EmDim_10_opt_Adam_bi_False_lstmsize_256_trainsize_30_testsize_5/model_Epoch18.h5'
+chord_model_path = 'models/chords/1523433134-Shifted_True_Lr_1e-05_EmDim_10_opt_Adam_bi_False_lstmsize_512_trainsize_4_testsize_1_samples_per_bar8/model_Epoch10_4.pickle'
 # Path where the polyphonic models are saved:
 model_path = 'models/chords_mldy/'
-model_filetype = '.h5'
+model_filetype = '.pickle'
 
 
-epochs = 20
-train_set_size = 30
-test_set_size = 10
-test_step = 30          # Calculate error for test set every this many songs
+epochs = 100
+train_set_size = 4
+test_set_size = 1
+test_step = 360          # Calculate error for test set every this many songs
 
 verbose = False
 show_plot = False
@@ -89,7 +90,9 @@ chord_embed_model = chord_model.Embed_Chord_Model(chord_model_path)
 # Build Melody Model
 print('creating model...')
 model = Sequential()
-model.add(LSTM(lstm_size, batch_size=batch_size, input_shape=(step_size, new_num_notes+chord_dim+counter_size), stateful=True))
+# model.add(LSTM(lstm_size, batch_size=batch_size, input_shape=(step_size, new_num_notes+chord_dim+counter_size), stateful=True))
+model.add(LSTM(lstm_size,  batch_input_shape=(batch_size,step_size, new_num_notes+chord_dim+counter_size), stateful=True))
+
 model.add(Dense(new_num_notes))
 model.add(Activation('sigmoid'))
 if optimizer == 'RMS': optimizer = RMSprop(lr=learning_rate)
@@ -110,7 +113,7 @@ def test():
     print('\nTesting:')
     total_test_loss = 0
 
-    bar = progressbar.ProgressBar(max_value=test_set_size, redirect_stdout=False)
+    bar = progressbar.ProgressBar(maxval=test_set_size, redirect_stdout=False)
     for i, test_song in enumerate(test_set):
         X_test, Y_test = make_feature_vector(test_song, chord_test_set[i], chord_embed_method)
 
@@ -207,18 +210,14 @@ for e in range(1, epochs+1):
         shuffle(ziperoni)
         train_set, chord_train_set = zip(*ziperoni)
 
-    bar = progressbar.ProgressBar(max_value=train_set_size)
+    bar = progressbar.ProgressBar(maxval=train_set_size)
     
     # Train model with each song seperatly
     for i, song in enumerate(train_set):
-#        print(i)
         X, Y = make_feature_vector(song, chord_train_set[i], chord_embed_method)
-#        print(X.shape)
-#        print(Y.shape)
-        hist = model.fit(X, Y, batch_size=batch_size, shuffle=False, epochs=1, verbose=verbose)
+        hist = model.fit(X, Y, batch_size=batch_size, shuffle=False, verbose=verbose)
         model.reset_states()
         bar.update(i)
-#            print(hist.history)
         total_train_loss += hist.history['loss'][0]
         if (i+1)%test_step is 0:
             total_train_loss = total_train_loss/test_step
