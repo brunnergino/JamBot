@@ -1,10 +1,16 @@
 # JamBot: Music Theory Aware Chord Based Generation of Polyphonic Music with LSTMs
 
-# Paper
+## Paper
 
 JamBot: Music Theory Aware Chord Based Generation of Polyphonic Music with LSTMs", presented at ICTAI 2017. 
 
 https://arxiv.org/abs/1711.07682
+
+### Main Results
+
+* When JamBot is trained on an unshifted dataset, i.e., all songs are left in their respective keys, the learned chord embeddings form the circle of fifths.
+
+* JamBot can create harmonic music with some longer term structure, thanks to its hierarchical structure. Samples can be listened to at: https://www.youtube.com/channel/UCQbE9vfbYycK4DZpHoZKcSw
 
 ## Setup
 
