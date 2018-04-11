@@ -7,7 +7,7 @@ if shifted:
     shift_folder = 'shifted/'
 
 # If you only want to process a subfolder like '/A' or '/A/A' for tests
-subfolder = '/A'
+subfolder = '/'
 
 source_folder = 'data/original' + subfolder
 tempo_folder1 = 'data/'  + 'tempo' + subfolder
@@ -47,7 +47,7 @@ if shifted:
 
 
 # Specifies the method how to add the chord information to the input vector
-# 'embed' uses the chord embeddinbg of the chord model
+# 'embed' uses the chord embedding of the chord model
 # 'onehot' encodes the chord as one hot vector
 # 'int' just appends the chord id to the input vector
 chord_embed_method = 'embed'
@@ -126,4 +126,6 @@ Es = tuple((3,7,10))
 As = tuple((0,3,8))
 Des = tuple((1,5,8))
 Fis = tuple((1,6,10))
+
+
 
