@@ -25,8 +25,7 @@ class Chord_Model:
         self.model = keras.models.load_model(model_path)
         self.model.reset_states()
         self.embed_layer_output = K.function([self.model.layers[0].input], [self.model.layers[0].output])
-#        self.embed_model = keras.ModModel(inputs=model.input,outputs=model.get_layer(.output)
-        self.embed_model = keras.models.Model(inputs=self.model.input,outputs=self.model.get_layer(index=0).output)
+        self.embed_model = keras.models.Model(inputs=self.model.input,outputs=self.model.get_layer(name="embedding").output)
         self.chord_to_index, self.index_to_chords = get_chord_dict()
         self.prediction_mode = prediction_mode
         self.temperature = temperature
