@@ -32,6 +32,11 @@ Make sure you have the following Python packages installed. In brackets we indic
 
 All tested with Python 3.5.4 (Last updated: 11th April 2018).
 
+
+## Dataset
+
+We used the lmd_matched subset of the Lakh Midi Dataset, which can be downloaded here: https://colinraffel.com/projects/lmd/
+
 ## Data Processing
 
 Create the data/original directory and put your MIDI files inside it.
